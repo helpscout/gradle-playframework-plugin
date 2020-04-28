@@ -1,6 +1,7 @@
 plugins {
     groovy
     `java-gradle-plugin`
+    `maven-publish`
     org.gradle.playframework.`test-setup`
     org.gradle.playframework.`integration-test-fixtures`
     org.gradle.playframework.`integration-test`
@@ -8,11 +9,10 @@ plugins {
     org.gradle.playframework.`github-pages`
     org.gradle.playframework.`documentation-test`
     id("com.gradle.build-scan") version "3.1.1"
-    id("com.gradle.plugin-publish") version "0.10.1"
 }
 
 group = "org.gradle.playframework"
-version = "0.10"
+version = "0.9.1-ee20b323-help-scout"
 
 repositories {
     jcenter()
@@ -90,12 +90,16 @@ gradlePlugin {
     }
 }
 
-pluginBundle {
-    website = "https://gradle.github.io/playframework/"
-    vcsUrl = "https://github.com/gradle/playframework"
-    tags = listOf("playframework", "web", "java", "scala")
-    mavenCoordinates {
-        groupId = project.group.toString()
-        artifactId = base.archivesBaseName
+
+publishing {
+    repositories {
+        maven {
+            name = "Artifactory"
+            url = uri("https://prepo.sumoci.net/artifactory/plugins-release-local")
+            credentials {
+                username = System.getProperty("artifactoryUser")
+                password = System.getProperty("artifactoryPassword")
+            }
+        }
     }
 }
