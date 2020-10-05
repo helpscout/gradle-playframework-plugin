@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "org.gradle.playframework"
-version = "0.9.1-ee20b323-help-scout"
+version = "0.9.2-aa1425d-help-scout"
 
 repositories {
     jcenter()
