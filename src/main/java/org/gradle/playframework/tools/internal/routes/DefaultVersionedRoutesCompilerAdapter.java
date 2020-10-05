@@ -13,7 +13,7 @@ abstract class DefaultVersionedRoutesCompilerAdapter implements VersionedRoutesC
     }
 
     protected boolean isGenerateRefReverseRouter() {
-        return false;
+        return true;
     }
 
     @Override
